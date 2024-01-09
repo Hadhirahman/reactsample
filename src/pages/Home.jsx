@@ -3,7 +3,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import { useEffect, useState } from 'react'
 import Card from '../components/Card'
-import axios from 'axios'
+// import axios from 'axios'
 
 
 
@@ -11,16 +11,22 @@ import axios from 'axios'
 function Home() {
     const [datas,setData]=useState([])
     const[Loading,setLoading]=useState(true)
-    async function datafetch(){
-        const result= await axios.get("https://jsonplaceholder.typicode.com/users")
-        setData(result.data)
-        setLoading(false)
-    }
+    // async function datafetch(){
+    //     const result= await axios.get("https://jsonplaceholder.typicode.com/users")
+    //     setData(result.data)
+        // setLoading(false)
+    // }
     useEffect(()=>{
-        // fetch("https://jsonplaceholder.typicode.com/users").then((res)=>res.json())
-        // .then((data)=>{setData(data)})
-        // .catch((error)=>{console.log(error);})
-        datafetch()
+        setTimeout(() => {
+          fetch("https://jsonplaceholder.typicode.com/users").then((res)=>res.json())
+        .then((data)=>{
+          setData(data),
+          setLoading(false)
+        })
+        
+        .catch((error)=>{console.log(error);})
+        }, 2000);
+        // datafetch()
         
     },[])
     console.log(datas);
